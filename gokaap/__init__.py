@@ -1,55 +1,60 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, g
 from flask_wtf.csrf import CSRFProtect
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 csrf = CSRFProtect()
+db = SQLAlchemy()
+migrate = Migrate()
 
-def create_app():
+def create_app(config=None):
     print('run: create_app()')
     app = Flask(__name__)
-    
-    app.config['SECRET_KEY'] = 'secretkey'
 
-    if app.config['DEBUG']:
-        app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
+    """Flask Configs"""
+    from .configs import DevelopmentConfig, ProducttionConfig
+
+    if not config:
+        if app.config['DEBUG']:
+            config = DevelopmentConfig()
+        else:
+            config = ProducttionConfig()
+
+    print('run config', config)
+    app.config.from_object(config)
 
     """ CSRF INIT """
     csrf.init_app(app)
 
-    @app.route('/')
-    def index():
-        return render_template('index.html')
+    """ DB INIT """
+    db.init_app(app)
+    if app.config['SQLALCHEMY_DATABASE_URI'].startswith('sqlite'):
+        migrate.init_app(app, db, render_as_batch=True)
+    else:
+        migrate.init_app(app, db)
 
-    from gokaap.forms.auth_form import LoginForm, RegisterForm
+    """ ROUTES INIT """
+    from gokaap.routes import base_route
+    from gokaap.routes import auth_route
 
-    @app.route('/auth/login', methods=['GET', 'POST'])
-    def login():
-        form = LoginForm()
-        if form.validate_on_submit():
-            user_id = form.data.get('user_id')
-            password = form.data.get('password')
-            return f'{user_id}, {password}'
-        else:
-            pass
-        return render_template('login.html', form=form)
+    app.register_blueprint(base_route.bp)
+    app.register_blueprint(auth_route.bp)
 
-    @app.route('/auth/register', methods=['GET', 'POST'])
-    def register():
-        form = RegisterForm()
-        if form.validate_on_submit():
-            user_id = form.data.get('user_id')
-            user_name = form.data.get('user_name')
-            password = form.data.get('password')
-            repassword = form.data.get('repassword')
-            return f'{user_id}, {user_name}, {password}, {repassword}'
-        else:
-            pass
+    """ RESTX INIT """
+    from gokaap.apis import blueprint as api
 
-        return render_template('register.html', form=form)
+    app.register_blueprint(api)
 
-    @app.route('/auth/logout')
-    def logout():
-        return 'logout'
+    """ REQUEST HOOK """
+    @app.before_request
+    def before_requset():
+        g.db = db.session
+
+    @app.teardown_request
+    def teardown_request(exception):
+        if hasattr(g, 'db'):
+            g.db.close()
 
     @app.errorhandler(404)
     def page_404(error):
