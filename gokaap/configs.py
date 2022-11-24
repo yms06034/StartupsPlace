@@ -15,7 +15,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SEND_FILE_MAX_AGE_DEFA = 1
     # front 호출 시 처리
-    WTF_CSRF_ENAB = False
+    WTF_CSRF_ENABLED = False
 
 # pytest class
 class TestingConfig(DevelopmentConfig):
