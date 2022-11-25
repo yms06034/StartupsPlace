@@ -4,6 +4,7 @@ sys.path.append('.')
 from gokaap.configs import TestingConfig
 from gokaap import create_app, db
 from gokaap.models.user import User as UserModel
+from gokaap.models.memo import Memo as MemoModel
 import pytest
 import os
 
@@ -15,14 +16,24 @@ def user_data():
         password = 'tester_1'
     )
 
+@pytest.fixture(scope='session')
+def memo_data():
+    yield dict (
+        title = 'title',
+        content = 'content'
+    )
 
 @pytest.fixture(scope='session')
-def app(user_data):
+def app(user_data, memo_data):
     app = create_app(TestingConfig())
     with app.app_context():
         db.drop_all()
         db.create_all()
-        db.session.add(UserModel(**user_data))
+        user = UserModel(**user_data)
+        db.session.add(user)
+        db.session.flush() # user.id 받아오기
+        memo_data['user_id'] = user.id
+        db.session.add(MemoModel(**memo_data))
         db.session.commit()
         yield app
         # sqlite drop

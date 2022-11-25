@@ -197,7 +197,6 @@ const MEMO = (function(){
   /* 메모 생성 */
   const createMemo = function(){
     /* POST /api/memos */
-
     const form = $modalEdit[0];
     const data = new FormData(form);
     let submitFlag = false;
@@ -207,13 +206,25 @@ const MEMO = (function(){
       }
     }
     if (submitFlag) {
-      console.log('createMemo');
-      // TODO
-      // 1) 폼 기반 호출: AJAX -> form, multipart
-      // 2) 조회한 메모 데이터 생성: _makeMemoHtml
-      // 3) 컨테이너에 추가: prepend to grid
-      // 4) 에러 얼럿 노출: error e.responseText
-      // 5) 모달 리셋: done - resetModalFields(true)
+      $.ajax({
+        url: '/api/memos',
+        type: 'post',
+        data: data,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        success: (r) => {
+          let itemHtml = _makeMemoHtml(r);
+          $items = $(itemHtml);
+          $GRID.prepend($items).masonry('prepended', $items);
+        },
+        error: (e) => {
+          alert(e.responseText);
+        },
+        complete: () => {
+          resetModalFields(true);
+        }
+      })
     }
   };
 
@@ -226,15 +237,39 @@ const MEMO = (function(){
     if (STATUS) {
       PAGE += 1;
       data = _getParams();
-      console.log('getMemos')
-      // TODO
-      // 1) 로딩아이콘 토글링: beforeSend - toggle loading icon
-      // 2) 조회한 메모 데이터 생성: loop _makeMemoHtml
-      // 3) 컨테이너에 추가: append to grid
-      // 4) 에러 얼럿 노출 및 추가 조회 스테이터스 업데이트: error e.responseText, set status
-      // 5) 에러시 추가데이터 없을경우 인포 아이템 추가: append no more item
-      // 6) 완료시, 로딩아이콘 토글링: complete - toggle loading icon with setTimeout
-      // 5) 그리드 리셋: done - _resetGridLayout()
+      $.ajax({
+        url:'/api/memos',
+        type:'get',
+        data: data,
+        beforeSend: ()=>{
+          $customActions.addClass('inactive');
+        },
+        success:(r)=>{
+          let itemHtmls = '';
+          $.each(r, (_, el)=>{
+            itemHtmls += _makeMemoHtml(el);
+          });
+          itemHtmls += _makeMoreItemHtml();
+          const $items = $(itemHtmls);
+          $GRID.append($items).masonry('appended', $items);
+        },
+        error: (e)=>{
+          STATUS = false;
+          if (e.status == 404) {
+            let html = _makeNoMoreItemHtml();
+            let $html = $(html);
+            $GRID.append($html).masonry('appended', $html)
+          } else {
+            alert(e.responseText);
+          }
+        },
+        complete: ()=>{
+          _resetGridLayout();
+          setTimeout(()=>{
+            $customActions.removeClass('inactiave');
+          }, 1000);
+        }
+      });
     }
   };
 
