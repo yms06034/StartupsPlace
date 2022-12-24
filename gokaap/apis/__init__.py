@@ -25,7 +25,7 @@ api = Api(
     version = "1.0",
     doc = "/docs",
     decorators=[check_session],
-    description = "Welcom my api docs"
+    description = "Welcome my api docs"
 )
 
 # TODO : add namespace to Blueprint
