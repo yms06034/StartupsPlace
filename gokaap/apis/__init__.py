@@ -21,11 +21,11 @@ blueprint = Blueprint(
 
 api = Api(
     blueprint,
-    title = "Gokaap API",
+    title = "Diddle eCommerce API",
     version = "1.0",
     doc = "/docs",
     decorators=[check_session],
-    description = "Welcome my api docs"
+    description = "Diddle eCommerce API"
 )
 
 # TODO : add namespace to Blueprint
