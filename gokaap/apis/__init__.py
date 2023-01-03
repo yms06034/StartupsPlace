@@ -31,3 +31,4 @@ api = Api(
 # TODO : add namespace to Blueprint
 api.add_namespace(UserNamespace)
 api.add_namespace(MemoNamespace)
+# api.add_namespace(MemoNamespace)
