@@ -1,0 +1,58 @@
+{% extends "/layout.html" %}
+
+{% block title -%}
+    Login
+{%- endblock %}
+
+
+{% from "_mdlforms.html" import render_text_field %}
+
+{% block head -%}
+  {{ super() }}
+{%- endblock %}
+
+{% block body -%}
+  {{ super() }}
+  <div class="auth_login_continer">
+    <div class="login_area">
+      <div style="width: 100%;">
+        <form method="POST" action="{{ url_for('auth.login') }}">
+          {{ form.csrf_token }}
+          <div class="default_login_top_text">
+            <strong>누구나 간편하게 창업정보</strong>
+          </div>
+          <div class="login_form_container">
+            <div class="login_form_container-jc">
+              <p class="title">이메일</p>
+              {{ render_text_field(form.user_id, minlength=4, maxlength=20, autocomplete='off') | indent(24)}}
+            </div>
+              <div class="login_form_container-jc">
+                <p class="title">비밀번호</p>
+                {{ render_text_field(form.password, minlength=4, maxlength=50) | indent(24)}}
+              </div>
+          </div>
+          {% filter indent(width=8) -%}
+          {% include "_errors.html" %}
+          {%- endfilter %}
+          <div style="width: 100%;">
+              <button class="login_btn">
+                로그인
+              </button>
+            <div style="width: 100%;">
+                <div class="signup_form">
+                  <a 
+                    class="signup_href" 
+                    href="{{ url_for('auth.register') }}">회원가입</a>
+                  <div class="sigup_center"></div>
+                  <a 
+                    class="signup_href" 
+                    href="{{ url_for('base.index') }}" style="float: right">홈</a>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div></div>
+  </div>
+{%- endblock %}

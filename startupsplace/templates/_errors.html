@@ -1,0 +1,11 @@
+<div id="errors">
+  <ul class="error_area">
+    {%- for message in get_flashed_messages() -%}
+      <li class="error_msg">
+        <div class="msg">
+          {{ message }}
+        </div>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>

@@ -1,0 +1,56 @@
+{% extends "/layout.html" %}
+
+{% block title -%}
+  회원가입
+{%- endblock %}
+
+{% from "_mdlforms.html" import render_text_field %}
+
+{% block body -%}
+  {{ super() }}
+  <div class="register_container">
+    {% filter indent(width=8) -%}
+    {% include "_errors.html" %}
+    {%- endfilter %}
+    <form method="POST" action="{{ url_for('auth.register') }}">
+      {{ form.csrf_token }}
+        <div style="width: 100%;">
+          <div class="top_title">
+            <!-- <a href="javascript:window:history.back();">
+              <i class="material-icons">arrow_back</i>
+            </a> -->
+            <span id="logoTitle" class="title_re">
+              누구나 간편하게 창업정보
+            </span>
+          </div>
+          <div class="input_form_area">
+            <div class="signUp_form_container">
+              <label class="label required">아이디</label>
+              {{ render_text_field(form.user_id, minlength=4, maxlength=20, autocomplete='off') | indent(24) }}
+            </div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="signUp_form_container">
+              <label class="label required">닉네임</label>
+              {{ render_text_field(form.user_name, minlength=4, maxlength=20, autocomplete='off') | indent(24)}}
+            </div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="signUp_form_container">
+              <label class="label required">비밀번호</label>
+              {{ render_text_field(form.password, minlength=4, maxlength=40) | indent(24)}}
+            </div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="signUp_form_container">
+              <label class="label required">비밀번호 확인</label>
+              {{ render_text_field(form.repassword, minlength=4, maxlength=40) | indent(24)}}
+            </div>
+          </div>
+          <button class="register_btn">
+            회원가입
+          </button>
+        </div>
+      </form>
+  </div>
+{%- endblock %}

@@ -1,0 +1,6 @@
+{% macro render_text_field(field) %}
+<div style="width: 100%; text-align: center;">
+  {{ field(class="form-control-wrap", **kwargs) }}
+  {{ field.label(class="display_none") }}
+</div>
+{% endmacro %}

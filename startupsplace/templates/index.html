@@ -1,0 +1,118 @@
+{% extends "/layout.html" %}
+
+{% block title -%}
+Main
+{%- endblock %}
+
+{% block head -%}
+  {{ super() }}
+{%- endblock %}
+
+{% block body -%}
+<!-- header -->
+  {{ super() }}
+<!-- main banner -->
+<section class="mainheader__container">
+  <div class="mainheader_grid">
+    <div class="mainheader_grid_row gird_title">
+      <!-- <h2 class="mainheader_title"></h2> -->
+    </div>
+  </div>
+</section>
+<section class="main_banner__container">
+  <div class="banner_grid">
+    <div class="banner_grid_row">
+      <div class="banner_grid_row--container">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://d2ur7st6jjikze.cloudfront.net/cms/1648_original_1659318602.png?1659318602" alt="">
+            </div>
+          </div>
+          <!-- <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+<div class="place_search">
+  <div class="place_search_title">
+    <div class="p_s_row">
+      <h2 class="p_s_title">찾으시는 브랜드가 있으신가요?</h2>
+    </div>
+  </div>
+  <div class="p_s_input_contianer">
+    <form class="p_s_input_from" method="POST" action="http://127.0.0.1:5000/travelinfo">
+      <input 
+        class="search_input"
+        type="text" 
+        name="input" 
+        placeholder="찾으시는 브랜드를 적어주세요 ex) 또래오래" />
+      <!-- <input type="submit", value="pred" /> -->
+    </form>
+  </div>
+</div>
+
+<script>
+  var swiper = new Swiper(".swiper-container", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 6,
+        spaceBetween: 30,
+        freeMode: true,
+        loop: true,
+        pagination: {
+          el: ".swiper-scrollbar",
+          hide: true,
+        },
+      });
+</script>
+{%- endblock %}
+{% block footer %}
+  {{super()}}
+{% endblock %}
+
