@@ -73,3 +73,16 @@ a, a:active, a:hover, a:link, a:visited {
   text-decoration: none;
   color: black;
 }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+body {
+  padding-top: 150px;
+}

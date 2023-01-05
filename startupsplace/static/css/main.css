@@ -205,7 +205,6 @@ header {
 .lnb_container {
   width: 100%;
   border-bottom: 1px solid var(--gray-200);
-  margin-bottom: 40px;
 }
 
 .lnb_container .lnb_inner {
@@ -617,6 +616,10 @@ header {
 }
 
 /* HASHTAG CSS */
+.font_size {
+  font-size: 14px;
+}
+
 .hashtag {
   margin-bottom: 70px;
 }
