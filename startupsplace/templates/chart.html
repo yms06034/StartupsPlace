@@ -1,0 +1,183 @@
+{% extends "/layout.html" %}
+
+{% block title -%}
+Main
+{%- endblock %}
+
+{% block head -%}
+  {{ super() }}
+{%- endblock %}
+
+{% block body -%}
+<!-- header -->
+  {{ super() }}
+<div class="chart_container">
+  <h2 class="title">경기동향지수</h2>
+  <div class="chart_area">
+    <div class="top_content">
+      <span class="subtitle">외식산업경기동향지수<span class="none">(업종별)</span></span>
+      <select name="select" id="select" class="select" onchange="updateChart(this)">
+        <option value="TOTAL">전체</option>
+        <option value="KOREAN_RESTAURANT">한식 일반 음식점업</option>
+        <option value="KOREAN_NOODLE_RESTAURANT">한식 면요리 전문점</option>
+        <option value="KOREAN_MEAT_RESTAURANT">한식 육류요리 전문점</option>
+        <option value="KOREAN_SEAFOOD_RESTAURANT">한식 해산물요리 전문점</option>
+        <option value="CHINESE_RESTAURANT">중식 음식점업</option>
+        <option value="JAPANESE_RESTAURANT">일식 음식점업</option>
+        <option value="WESTERN_RESTAURANT">서양식 음식점업</option>
+        <option value="OTHER_FOREIGN_RESTAURANT">기타 외국식 음식점업</option>
+        <option value="BAKERY_BUSINESS">제과점업</option>
+        <option value="FAST_FOOD">피자, 햄버거, 샌드위치 및 유사 음식점업</option>
+        <option value="CHICKEN">치킨 전문점</option>
+        <option value="KOREAN_SNACK_RESTAURANT">김밥 및 기타 간이 음식점업</option>
+        <option value="SNACK_SHOP">간이 음식 포장 판매 전문점</option>
+        <option value="GENERAL_ENTERTAINMENT_BAR">일반 유흥 주점업</option>
+        <option value="ENTERTAINMENT_BUSINESS">무도 유흥 주점업</option>
+        <option value="DRAUGHT_BEER_SHOP">생맥주 전문점</option>
+        <option value="OTHER_PUBS">기타 주점업</option>
+        <option value="COFFEE_SHOP">커피 전문점</option>
+        <option value="OTHER_NON_ALCOHOLIC_BEVERAGE_STORES">기타 비알콜 음료점업</option>
+      </select>
+    </div>
+    <div>
+      <canvas id="foodChart"></canvas>
+    </div>
+  </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  let q1_20 = {{ q1_20 | tojson }};
+  let q2_20 = {{ q2_20 | tojson }};
+  let q3_20 = {{ q3_20 | tojson }};
+  let q4_20 = {{ q4_20 | tojson }};
+  let q1_21 = {{ q1_21 | tojson }};
+  let q2_21 = {{ q2_21 | tojson }};
+  let q3_21 = {{ q3_21 | tojson }};
+  let q4_21 = {{ q4_21 | tojson }};
+  let q1_22 = {{ q1_22 | tojson }};
+  let q2_22 = {{ q2_22 | tojson }};
+  let q3_22 = {{ q3_22 | tojson }};
+
+  const q11 = JSON.parse(q1_20);
+  const q12 = JSON.parse(q2_20);
+  const q13 = JSON.parse(q3_20);
+  const q14 = JSON.parse(q4_20);
+  const q15 = JSON.parse(q1_21);
+  const q16 = JSON.parse(q2_21);
+  const q17 = JSON.parse(q3_21);
+  const q18 = JSON.parse(q4_21);
+  const q19 = JSON.parse(q1_22);
+  const q20 = JSON.parse(q2_22);
+  const q21 = JSON.parse(q3_22);
+  
+  console.log(q11)
+
+  const ctx = document.getElementById('foodChart');
+  var values = [
+    {
+      year: '2020년 1분기'
+      , financials: q11
+    },
+    {
+      year: '2020년 2분기'
+      , financials: q12
+    },
+    {
+      year: '2020년 3분기'
+      , financials: q13
+    },
+    {
+      year: '2020년 4분기'
+      , financials: q14
+    },
+    {
+      year: '2021년 1분기'
+      , financials: q15
+    },
+    {
+      year: '2021년 2분기'
+      , financials: q16
+    },
+    {
+      year: '2021년 3분기'
+      , financials: q17
+    },
+    {
+      year: '2021년 4분기'
+      , financials: q18
+    },
+    {
+      year: '2022년 1분기'
+      , financials: q19
+    },
+    {
+      year: '2022년 2분기'
+      , financials: q20
+    },
+    {
+      year: '2022년 3분기'
+      , financials: q21
+    }
+  ]
+
+const data = {
+      // labels: year,
+      datasets: [{
+        label: '외식산업 경기지수(현재)',
+        data: values,
+        borderWidth: 1,
+        parsing: {
+          xAxisKey: 'year',
+          yAxisKey: 'financials.TOTAL'
+        }
+      }]
+    };
+
+
+
+// config 
+const config = {
+  type: 'line',
+  data,
+  options: {
+    responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false
+    },
+    scales: {
+      y: {
+        beginAtZero: true
+      },
+      yAxes: [{
+        ticks: {
+          stepSize: 10, //y축 간격
+          suggestedMin: 0,//y축 최소 값
+          suggestedMax: 100,//y축 최대값
+        }
+      }]
+    }
+  }
+};
+
+// render init block
+const myChart = new Chart(
+  document.getElementById('foodChart'),
+  config
+);
+
+function updateChart(option){
+  // console.log(option.value);
+  myChart.data.datasets[0].parsing.yAxisKey = `financials.${option.value}`;
+  console.log(data.datasets[0].parsing.yAxisKey)
+  myChart.update();
+}
+</script>
+
+{%- endblock %}
+{% block footer %}
+  {{super()}}
+{% endblock %}
+

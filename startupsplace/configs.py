@@ -22,6 +22,3 @@ class TestingConfig(DevelopmentConfig):
     __test__ = False
     TESTIMG = True
     SQLALCHEMY_DATABASE_URI = f'sqlite:///{os.path.join(BASE_PATH, "sqlite_test.db")}'
-
-class ProducttionConfig(DevelopmentConfig):
-    pass

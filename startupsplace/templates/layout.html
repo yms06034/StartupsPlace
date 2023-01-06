@@ -25,6 +25,7 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
       <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" />
       <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/chart.css') }}" />
       <!-- APP JS -->
       <script src="{{ url_for('static', filename='js/app.js') }}"></script>
       <!--Jquery CDN JS-->
@@ -91,7 +92,7 @@
         <nav class="lnb_inner">
           <div class="lnb_content">
             <div class="lnb_travelinfo">
-              <a class="travelinfo--a" href="javascript:void(0)">
+              <a class="travelinfo--a" href="{{ url_for('foodindustry.chart') }}">
                 <span class="lnb_title">상권정보</span>
               </a>
             </div>
