@@ -13,13 +13,11 @@ def create_app(config=None):
     app = Flask(__name__)
 
     """Flask Configs"""
-    from .configs import DevelopmentConfig, ProducttionConfig
+    from .configs import DevelopmentConfig
 
     if not config:
         if app.config['DEBUG']:
             config = DevelopmentConfig()
-        else:
-            config = ProducttionConfig()
 
     print('run config', config)
     app.config.from_object(config)
@@ -38,10 +36,12 @@ def create_app(config=None):
     from startupsplace.routes import base_route
     from startupsplace.routes import auth_route
     from startupsplace.routes import chart_route
+    from startupsplace.routes import place_route
 
     app.register_blueprint(base_route.bp)
     app.register_blueprint(auth_route.auth_bp)
     app.register_blueprint(chart_route.chart_bp)
+    app.register_blueprint(place_route.place_bp)
 
     """ RESTX INIT """
     from startupsplace.apis import blueprint as api

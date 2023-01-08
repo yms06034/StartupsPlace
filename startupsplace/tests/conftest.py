@@ -4,7 +4,6 @@ sys.path.append('.')
 from startupsplace.configs import TestingConfig
 from startupsplace import create_app, db
 from startupsplace.models.user import User as UserModel
-from startupsplace.models.memo import Memo as MemoModel
 import pytest
 import os
 
@@ -50,7 +49,6 @@ def app(user_data, memo_data):
 @pytest.fixture(scope='session')
 def client(app, user_data):
     with app.test_client() as client:
-        # NOTE : 세션 입혀주기
         with client.session_transaction() as session:
             session['user_id'] = user_data.get('user_id')
         yield client
