@@ -3,6 +3,7 @@ import urllib.request
 import json
 import pandas as pd
 import hashlib, hmac, base64, requests, time
+from konlpy.tag import Okt
 
 
 # 블로그 크롤링 함수
@@ -75,10 +76,11 @@ def call_RelKwdStat(_kwds_string):
     
     return r_data
 
-
 NAME = 'query'
 
 query_bp = Blueprint(NAME, __name__)
+
+Okt = Okt()
 
 @query_bp.route('/query', methods=['GET', 'POST'])
 def query_html():
@@ -93,6 +95,7 @@ def query_html():
 
     result.replace('<b>', '', inplace=True, regex=True)
     result.replace('</b>', '', inplace=True, regex=True)
+    result.replace(r'&apos;', '', inplace=True, regex=True)
 
     title = result['title']
     link = result['link']
@@ -127,6 +130,17 @@ def query_html():
     result_m_mo = search_df['monthlyMobileQcCnt']
     result_m_pc = search_df['monthlyPcQcCnt']
 
+    # Word Cloud
+
+    ls = []
+    for i in range(len(result['description'])):
+        ls.append(result['description'][i])
+
+    # for i in range(len(ls)):
+    #     clear = Okt.nouns(ls[i])
+    #     ls[i] = ' '.join(clear)
+
+    word_ls = ','.join(ls)
     return render_template('query.html' 
                         , title = title
                         , link = link
@@ -138,4 +152,5 @@ def query_html():
                         , n_description = n_description
                         , result_kwd = result_kwd
                         , result_m_mo = result_m_mo
-                        , result_m_pc = result_m_pc)
+                        , result_m_pc = result_m_pc
+                        , word_ls = word_ls)

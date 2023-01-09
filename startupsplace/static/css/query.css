@@ -208,3 +208,36 @@
   font-size: 14px;
   color: #8b8d91;
 }
+
+.container .section_second {
+  display: flex;
+  padding: 0 10px;
+}
+
+.container .section_second .word_container {
+  margin-top: 30px;
+  border-radius: 15px;
+  background-color: white;
+  width: 45%;
+}
+
+.container .section_second .word_container .word_title {
+  display: flex;
+  padding: 25px 22px 0 25px;
+}
+
+.container .section_second .word_container .word_title .word_head {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container .section_second .word_container .chart_area {
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+.container .section_second .word_container .chart_area .Chart {
+  border-radius: 15px;
+  width: 100%;
+}
+
