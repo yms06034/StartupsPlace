@@ -37,11 +37,13 @@ def create_app(config=None):
     from startupsplace.routes import auth_route
     from startupsplace.routes import chart_route
     from startupsplace.routes import place_route
+    from startupsplace.routes import query_route
 
     app.register_blueprint(base_route.bp)
     app.register_blueprint(auth_route.auth_bp)
     app.register_blueprint(chart_route.chart_bp)
     app.register_blueprint(place_route.place_bp)
+    app.register_blueprint(query_route.query_bp)
 
     """ RESTX INIT """
     from startupsplace.apis import blueprint as api

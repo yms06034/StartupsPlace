@@ -26,6 +26,7 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" />
       <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}" />
       <link rel="stylesheet" href="{{ url_for('static', filename='css/chart.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/query.css') }}" />
       <!-- APP JS -->
       <script src="{{ url_for('static', filename='js/app.js') }}"></script>
       <!--Jquery CDN JS-->
@@ -56,7 +57,7 @@
             <div class="input_container--search--icon">
               <img class="search" src="https://dffoxz5he03rp.cloudfront.net/icons/ic_search_20x20_gray_500.svg" alt="search">
             </div>
-            <input type="text" placeholder="검색어를 입력해주세요" />
+            <input type="text" placeholder="전체 검색어 입력 부분 (아직 미 개발)" />
           </div>
         </div>
         <div class="auth_container">
@@ -102,7 +103,7 @@
               </a>
             </div>
             <div class="lnb_travelinfo">
-              <a class="travelinfo--a" href="javascript:void(0)">
+              <a class="travelinfo--a" href="{{ url_for('query.query_html') }}">
                 <span class="lnb_title">매거진</span>
               </a>
             </div>

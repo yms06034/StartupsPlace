@@ -70,11 +70,12 @@ Main
     </div>
   </div>
   <div class="p_s_input_contianer">
-    <form class="p_s_input_from" method="POST" action="http://127.0.0.1:5000/travelinfo">
+    <form class="p_s_input_from" method="POST" action="http://127.0.0.1:5000/query">
       <input 
         class="search_input"
         type="text" 
         name="input" 
+        id="input"
         placeholder="찾으시는 브랜드를 적어주세요 ex) 또래오래" />
       <!-- <input type="submit", value="pred" /> -->
     </form>
@@ -154,6 +155,16 @@ Main
           </div>
         </a>
       </div>
+    </div>
+    <div class="p_s_input_contianer" style="display: none;">
+      <form class="p_s_input_from" method="POST" name="input" action="http://127.0.0.1:5000/query">
+        <input 
+          class="search_input"
+          type="text" 
+          name="input" 
+          id="input"
+          placeholder="이전에 갔던 즐거운 여행지 및 축제이름을 적어주세요 ex) 롯데월드" />
+      </form>
     </div>
   </div>
 </div>
