@@ -11,65 +11,101 @@ Main
 {% block body -%}
 <!-- header -->
   {{ super() }}
-<div id="map" style="width:100%;height:350px;"></div>
+<div class="map_container">
+  <div class="top_input">
+    <div class="input_container">
+      <div class="input_container--search">
+        <div class="icon">
+          <img class="search" src="https://dffoxz5he03rp.cloudfront.net/icons/ic_search_20x20_gray_500.svg" alt="search">
+        </div>
+        <form method="POST" name="input" autocomplete="off">
+          <input 
+            class="final_input" 
+            type="text"
+            name="input" 
+            id="input"
+            placeholder="브랜드를 검색해주세요" />
+        </form>
+      </div>
+    </div>
+    <div class="text_info">
+      <p class="tet_hover" style="padding-right: 5px;">데이터 출처</p>
+      <img style="padding-right: 20px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+aWNvbi8xNi9pbmZvPC90aXRsZT4KICAgIDxnIGlkPSLrp4jsnbTtjpjsnbTsp4AiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSIjMzEt67iM656c65Oc7IOB7IS4LW0iIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOS4wMDAwMDAsIC00MTU3LjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0iR3JvdXAtNjEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE5LjAwMDAwMCwgMzQ4NS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cC0xOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsIDMzLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cC05IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgNjM3LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iaWNvbi8xNi9pbmZvIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMi4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJQYXRoIiBwb2ludHM9IjAgMCAxNiAwIDE2IDE2IDAgMTYiPjwvcG9seWdvbj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMS41MDAwMDAsIDEuNTAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBpZD0iT3ZhbCIgc3Ryb2tlPSIjOUU5RTlFIiBjeD0iNi41IiBjeT0iNi41IiByPSI2Ij48L2NpcmNsZT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlIiBmaWxsPSIjOUU5RTlFIiB4PSI1Ljg1IiB5PSIyLjYiIHdpZHRoPSIxLjMiIGhlaWdodD0iMS4zIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgaWQ9IlJlY3RhbmdsZS1Db3B5IiBmaWxsPSIjOUU5RTlFIiB4PSI1Ljg1IiB5PSI1LjIiIHdpZHRoPSIxLjMiIGhlaWdodD0iNS4yIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" alt="icon">
+    </div>
+    <div class="data_info_none">
+      <div class="data_info_area">
+        <span class="text">본 데이터는 카카오 API 데이터를 기반으로 하고 있습니다. <br><br> 성공창업은 유용한 정보를 제공하기 위해 주기적으로 데이터를 업데이트 하고 있습니다.</span>
+      </div>
+    </div>
+  </div>
+  <div id="map" style="width:100%; height: 1000px;">
+  </div>
+  <div class="btn_caa">
+    <button class="aatest_1" onclick="zoomIn()">+</button>
+    <button class="aatest" onclick="zoomOut()">-</button>
+  </div>
+</div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b84c5817e861d4d26e3cd3756f68db28&libraries=services"></script>
 <script>
-  var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+  
 
-  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-      mapOption = {
-          center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-          level: 3 // 지도의 확대 레벨
-      };  
+  const mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(37.5759, 126.9768), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
 
-  // 지도를 생성합니다    
-  var map = new kakao.maps.Map(mapContainer, mapOption); 
+  // 지도를 생성합니다
+  const map = new kakao.maps.Map(mapContainer, mapOption);
 
-  // 장소 검색 객체를 생성합니다
-  var ps = new kakao.maps.services.Places(); 
+  // 주소-좌표 변환 객체를 생성합니다
+  const geocoder = new kakao.maps.services.Geocoder();
+  const placeName = JSON.parse('{{ place_road_name | tojson }}');
+  // console.log(placeName)
+  const positions = placeName;
 
-  // 키워드로 장소를 검색합니다
-  ps.keywordSearch('백종원', placesSearchCB); 
+  console.log(positions);
 
-  // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-  function placesSearchCB (data, status, pagination) {
+  function zoomIn() {        
+    let level = map.getLevel();
+    map.setLevel(level - 1);
+  };    
+ 
+  function zoomOut() {    
+    let level = map.getLevel(); 
+    map.setLevel(level + 1);
+  };
+
+  positions.forEach(function (position) {
+    geocoder.addressSearch(position.address, function(result, status) {
+
       if (status === kakao.maps.services.Status.OK) {
 
-          // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-          // LatLngBounds 객체에 좌표를 추가합니다
-          var bounds = new kakao.maps.LatLngBounds();
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-          for (var i=0; i<data.length; i++) {
-              displayMarker(data[i]);    
-              bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-          }       
+        // 마크 표시
+        const marker = new kakao.maps.Marker({
+          map: map, 
+          position: coords, 
+        });
 
-          // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-          map.setBounds(bounds);
-      } 
-  }
+        // 장소 이름 추가
+        const infowindow = new kakao.maps.InfoWindow({
+          content: '<a class="url_marker" href=' + position.url + '>' + '<div class="info_marker">' + position.title + '</div>' + '<a>'
+        });
+        // console.log(position.url)
+        infowindow.open(map, marker);
 
-  // 지도에 마커를 표시하는 함수입니다
-  function displayMarker(place) {
-      
-      // 마커를 생성하고 지도에 표시합니다
-      var marker = new kakao.maps.Marker({
-          map: map,
-          position: new kakao.maps.LatLng(place.y, place.x) 
-      });
-
-      // 마커에 클릭이벤트를 등록합니다
-      kakao.maps.event.addListener(marker, 'click', function() {
-          // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-          infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-          infowindow.open(map, marker);
-      });
-  }
+        // 지도의 중심을 결과값으로 받은 위치 이동(수정 예정)
+        map.setCenter(coords);
+      }
+    });
+  });
 </script>
 
 {%- endblock %}
 {% block footer %}
-  {{super()}}
+  <!-- {{super()}} -->
 {% endblock %}
 
