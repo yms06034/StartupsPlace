@@ -3,7 +3,11 @@ import urllib.request
 import json
 import pandas as pd
 import hashlib, hmac, base64, requests, time
-from konlpy.tag import Okt
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+from apiclient.discovery import build
+from apiclient.errors import HttpError
+from oauth2client.tools import argparser
 
 
 # 블로그 크롤링 함수
@@ -76,11 +80,95 @@ def call_RelKwdStat(_kwds_string):
     
     return r_data
 
+def get_count_days(query):
+    now = datetime.now()
+    fost = now - relativedelta(months=1)
+    past = fost.strftime("%Y-%m-%d")
+    now = now.strftime("%Y-%m-%d")
+    
+    client_id = "Riuyt2wGnc_hO61T8yg9"
+    client_secret = "JwLjweTgNq"
+    url = "https://openapi.naver.com/v1/datalab/search"
+    body = "{\"startDate\":\""+past+"\",\"endDate\":\""+now+"\",\"timeUnit\":\"date\",\"keywordGroups\":[{\"groupName\":\""+query+"\",\"keywords\":[\""+query+"\"]}]}"
+
+    request = urllib.request.Request(url)
+    request.add_header("X-Naver-Client-Id",client_id)
+    request.add_header("X-Naver-Client-Secret",client_secret)
+    request.add_header("Content-Type","application/json")
+    response = urllib.request.urlopen(request, data=body.encode("utf-8"))
+    rescode = response.getcode()
+    if(rescode==200):
+        response_body = response.read()
+        data = json.loads(response_body.decode("utf-8"))
+    else:
+        return "Error Code:" + rescode
+    
+    d2 = data['results']
+    for i in range(len(d2)):
+        asc = d2[i]
+        ds = asc['data']
+    
+    df = pd.DataFrame(ds)
+    period = []
+    ratio = []
+    for i in range(0, len(df['period'])):
+        period.append(df['period'][i])
+        ratio.append(df['ratio'][i])
+
+    preiod_fin = []
+    for i in range(len(period)):
+        pre = period[i]
+        preiod_fin.append(pre[5:].replace('-','.'))
+    preiod_fin
+        
+    return preiod_fin, ratio
+
+
+def youtube_search(query):
+    DEVELOPER_KEY='AIzaSyC086IVU7HuTYWRHile90XlZeMRrEsCkhs'
+    YOUTUBE_API_SERVICE_NAME='youtube'
+    YOUTUBE_API_VERSION='v3'
+
+    youtube=build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
+    
+    search_response=youtube.search().list(
+        q=query,
+        order='relevance',
+        part='snippet',
+        maxResults=10,
+        ).execute()
+
+    videoid = [] # 영상 ID
+    publisne = [] # 영상 업로드 일자
+    thumbnails = [] # 썸네일 이미지 링크
+    videotitle = [] # 영상 타이틀
+    channeltitle = [] # 채널 이름
+
+    youtube = search_response['items']
+
+    if youtube[0]['id'] == 'channelId':
+        for c in range(1, 6):
+            videoid.append(youtube[c]['id']['videoId'])           
+    elif youtube[0]['id']['videoId']:
+        for a in range(0, 5):
+            videoid.append(youtube[a]['id']['videoId'])
+
+    for y in range(0 ,5):
+        publisn = youtube[y]['snippet']['publishedAt']
+        publisne.append(publisn[:10])
+
+        thumbnails.append(youtube[y]['snippet']['thumbnails']['medium']['url'])
+
+        videotitle.append(youtube[y]['snippet']['title'])
+
+        channeltitle.append(youtube[y]['snippet']['channelTitle'])
+    
+    return videoid, publisne, thumbnails, videotitle, channeltitle
+
+
 NAME = 'query'
 
 query_bp = Blueprint(NAME, __name__)
-
-Okt = Okt()
 
 @query_bp.route('/query', methods=['GET', 'POST'])
 def query_html():
@@ -136,11 +224,14 @@ def query_html():
     for i in range(len(result['description'])):
         ls.append(result['description'][i])
 
-    # for i in range(len(ls)):
-    #     clear = Okt.nouns(ls[i])
-    #     ls[i] = ' '.join(clear)
-
     word_ls = ','.join(ls)
+
+    # Naver Datalab
+    preiod_fin, ratio = get_count_days(query)
+
+    # youtube data api
+    videoid, publisne, thumbnails, videotitle, channeltitle = youtube_search(query)
+
     return render_template('query.html' 
                         , title = title
                         , link = link
@@ -153,4 +244,12 @@ def query_html():
                         , result_kwd = result_kwd
                         , result_m_mo = result_m_mo
                         , result_m_pc = result_m_pc
-                        , word_ls = word_ls)
+                        , word_ls = word_ls
+                        , period = preiod_fin
+                        , ratio = ratio
+                        , kwd = query
+                        , channeltitle = channeltitle
+                        , videotitle = videotitle
+                        , thumbnails = thumbnails
+                        , publisne = publisne
+                        , videoid = videoid)

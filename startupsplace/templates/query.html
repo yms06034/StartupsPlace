@@ -5,211 +5,339 @@ Main
 {%- endblock %}
 
 {% block head -%}
-  {{ super() }}
-  <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
- 
-  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+{{ super() }}
+<link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+
+<script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
 {% endblock %}
 
 {% block body %}
-  {{ super() }}
-  <div class="background">
-    <div class="container">
-      <div class="p_s_input_contianer">
-        <form class="p_s_input_from" method="POST" name="input">
-          <input 
-            class="search_input"
-            type="text" 
-            name="input" 
-            id="input"
-            placeholder="원하시는 창업관련 키워드를 검색해주세요   ex) 창업준비" />
-        </form>
+{{ super() }}
+<div class="background">
+  <div class="container">
+    <div class="p_s_input_contianer">
+      <form class="p_s_input_from" method="POST" name="input">
+        <input 
+          class="search_input"
+          type="text" 
+          name="input" 
+          id="input"
+          placeholder="원하시는 창업관련 키워드를 검색해주세요   ex) 창업준비" />
+      </form>
+    </div>
+    <section class="section_first">
+
+      <!-- Blog Area -->
+      <div class="blog_area">
+        <div class="blog_content">
+          <div class="blog_position">
+            <div class="title">
+              <span style="padding-right: 10px;">블로그</span>
+              <img
+              class="logo_img" 
+              src="https://downloadr2.apkmirror.com/wp-content/uploads/2019/07/5d23fcafce956.png" alt="blogimg">
+            </div>
+            <div class="content_posotion">
+              <div class="content_area">
+                {% for i in range(0, 50) %}
+                <ul class="text_area">
+                  <li class="original-item">
+                    <a href='{{link[i]}}'>
+                      <dt class="post_title">{{title[i]}}</dt>
+                      <dd class="post_content">{{description[i]}}</dd>
+                      <span class="post_info">{{bloggername[i]}} | {{postdate[i]}}</span>
+                    </a>
+                  </li>
+                </ul>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <section class="section_first">
-  
-        <!-- Blog Area -->
-        <div class="blog_area">
-          <div class="blog_content">
-            <div class="blog_position">
-              <div class="title">
-                <span style="padding-right: 10px;">블로그</span>
-                <img
-                class="logo_img" 
-                src="https://downloadr2.apkmirror.com/wp-content/uploads/2019/07/5d23fcafce956.png" alt="blogimg">
-              </div>
-              <div class="content_posotion">
-                <div class="content_area">
-                  {% for i in range(0, 50) %}
-                  <ul class="text_area">
-                    <li class="original-item">
-                      <a href='{{link[i]}}'>
-                        <dt class="post_title">{{title[i]}}</dt>
-                        <dd class="post_content">{{description[i]}}</dd>
-                        <span class="post_info">{{bloggername[i]}} | {{postdate[i]}}</span>
-                      </a>
-                    </li>
-                  </ul>
-                  {% endfor %}
-                </div>
+
+      <!-- News Area -->
+      <div class="blog_area">
+        <div class="blog_content">
+          <div class="blog_position">
+            <div class="title">
+              <span style="padding-right: 10px;">뉴스</span>
+              <img
+              class="logo_img" 
+              src="../static/img/news_title.png" alt="newsimg">
+            </div>
+            <div class="content_posotion">
+              <div class="content_area">
+                {% for a in range(0, 50) %}
+                <ul class="text_area">
+                  <li class="original-item">
+                    <a href='{{n_link[a]}}'>
+                      <dt class="post_title">{{n_title[a]}}</dt>
+                      <dd class="post_content">{{n_description[a]}}</dd>
+                    </a>
+                  </li>
+                </ul>
+                {% endfor %}
               </div>
             </div>
           </div>
         </div>
-  
-        <!-- News Area -->
-        <div class="blog_area">
-          <div class="blog_content">
-            <div class="blog_position">
-              <div class="title">
-                <span style="padding-right: 10px;">뉴스</span>
-                <img
-                class="logo_img" 
-                src="../static/img/news_title.png" alt="newsimg">
+      </div>
+
+      <!-- 연관 검색어 -->
+      <div class="blog_area">
+        <div class="blog_content">
+          <div class="blog_position">
+            <div class="title-s">
+              <div class="title-a">
+                <span style="padding-right: 10px;">연관 검색어</span>
+                <span class="right"> 
+                  월별 검색량
+                </span>
               </div>
-              <div class="content_posotion">
-                <div class="content_area">
-                  {% for a in range(0, 50) %}
-                  <ul class="text_area">
-                    <li class="original-item">
-                      <a href='{{n_link[a]}}'>
-                        <dt class="post_title">{{n_title[a]}}</dt>
-                        <dd class="post_content">{{n_description[a]}}</dd>
-                      </a>
-                    </li>
-                  </ul>
-                  {% endfor %}
-                </div>
-              </div>
+              <table class="search_title_table">
+                <colgroup>
+                  <col style="width: 45%">
+                  <col style="width: 22%">
+                  <col style="width: 22%">
+                </colgroup>
+                <tr>
+                  <th class="col">연관어</th>
+                  <th class="col">PC</th>
+                  <th class="col">Mobel</th>
+                </tr>
+              </table>
             </div>
-          </div>
-        </div>
-  
-        <!-- 연관 검색어 -->
-        <div class="blog_area">
-          <div class="blog_content">
-            <div class="blog_position">
-              <div class="title-s">
-                <div class="title-a">
-                  <span style="padding-right: 10px;">연관 검색어</span>
-                  <span class="right"> 
-                    월별 검색량
-                  </span>
-                </div>
-                <table class="search_title_table">
-                  <colgroup>
-                    <col style="width: 45%">
-                    <col style="width: 22%">
-                    <col style="width: 22%">
-                  </colgroup>
-                  <tr>
-                    <th class="col">연관어</th>
-                    <th class="col">PC</th>
-                    <th class="col">Mobel</th>
-                  </tr>
-                </table>
-              </div>
-              <div class="content_posotion">
-                <div class="content_area">
-                  <div class="search_terms">
-                    <div class="search_content_area">
-                      <table class="search_content_table">
-                        <colgroup>
-                          <col style="width: 45%">
-                          <col style="width: 22%">
-                          <col style="width: 22%">
-                        </colgroup>
-                        {% for s in range(0, 20) %}
-                        <tr>
-                          <td class="keyword">{{result_kwd[s]}}</td>
-                          <td class="keyword_l">{{result_m_mo[s]}}</td>
-                          <td class="keyword_l">{{result_m_pc[s]}}</td>
-                        </tr>
-                        {% endfor %}
-                      </table>
-                    </div>
+            <div class="content_posotion">
+              <div class="content_area">
+                <div class="search_terms">
+                  <div class="search_content_area">
+                    <table class="search_content_table">
+                      <colgroup>
+                        <col style="width: 45%">
+                        <col style="width: 22%">
+                        <col style="width: 22%">
+                      </colgroup>
+                      {% for s in range(0, 20) %}
+                      <tr>
+                        <td class="keyword">{{result_kwd[s]}}</td>
+                        <td class="keyword_l">{{result_m_mo[s]}}</td>
+                        <td class="keyword_l">{{result_m_pc[s]}}</td>
+                      </tr>
+                      {% endfor %}
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <section class="section_second">
-        <div class="word_container">
-          <div class="word_title">
-            <span class="word_head">텍스트 분석</span>
-          </div>
-          <div class="chart_area">
-            <div class="Chart" id="myChart"></div>
-          </div>
+      </div>
+    </section>
+
+    <section class="section_second">
+      <div class="word_container">
+        <div class="word_title">
+          <span class="word_head">텍스트 분석</span>
         </div>
-      </section>
-    </div>
-  
-  
+        <div class="chart_area">
+          <div class="Chart" id="myChart"></div>
+        </div>
+      </div>
+      <div class="line_chart_container">
+        <div class="line_chart_area">
+          <div class="line_title">
+            <span class="word_head">월간 검색량</span>
+            <span class="word_sub">단위 : 일별</span>
+          </div>
+          <canvas id="labChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_third">
+      <div class="video_container">
+        <div class="video_title">
+          <span class="head">유튜브 영상</span>
+          <a class="sub_title" href="https://www.youtube.com/results?search_query={{kwd}}">
+            <span>더 다양한 유튜브 확인하기 ></span>
+          </a>
+        </div>
+        <div class="video_area">
+          <ul class="video_solo">
+            {% for y in range(0, 5) %}
+            <li class="video_photo_area">
+              <figure class="item_thumb">
+                <a href="https://www.youtube.com/watch?v={{ videoid[y] }}">
+                  <img class="youtube_img" src="{{ thumbnails[y] }}" alt="">
+                </a>
+              </figure>
+              <a class="title_a_js" href="https://www.youtube.com/watch?v={{ videoid[y] }}">
+                <span class="head_title">{{ videotitle[y] }}</span>     
+              </a>
+              <div class="viedo_info">
+                <span class="channelTitle">{{ channeltitle[y] }}</span>
+                <span class="channelTitle">{{ publisne[y] }}</span>     
+              </div>
+            </li>
+            {% endfor %}
+            <li class="video_photo_area">
+              <figure class="item_thumb">
+                <a href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                  <img class="youtube_img" src="https://i.ytimg.com/vi/1Iu5XW9FM6s/mqdefault.jpg" alt="">
+                </a>
+              </figure>
+              <a class="title_a_js" href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                <span class="head_title">창업해서 망하지 않으려면 &quot;이거&quot; 하나는 꼭 알고 합시다.ㅣ창업 준비 과정</span>     
+              </a>
+              <div class="viedo_info">
+                <span class="channelTitle">발랑쿤 채널</span>
+                <span class="channelTitle">2018-12-30</span>     
+              </div>
+            </li>
+            <li class="video_photo_area">
+              <figure class="item_thumb">
+                <a href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                  <img class="youtube_img" src="https://i.ytimg.com/vi/1Iu5XW9FM6s/mqdefault.jpg" alt="">
+                </a>
+              </figure>
+              <a class="title_a_js" href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                <span class="head_title">창업해서 망하지 않으려면 &quot;이거&quot; 하나는 꼭 알고 합시다.ㅣ창업 준비 과정</span>     
+              </a>
+              <div class="viedo_info">
+                <span class="channelTitle">발랑쿤 채널</span>
+                <span class="channelTitle">2018-12-30</span>     
+              </div>
+            </li>
+            <li class="video_photo_area">
+              <figure class="item_thumb">
+                <a href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                  <img class="youtube_img" src="https://i.ytimg.com/vi/1Iu5XW9FM6s/mqdefault.jpg" alt="">
+                </a>
+              </figure>
+              <a class="title_a_js" href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                <span class="head_title">창업해서 망하지 않으려면 &quot;이거&quot; 하나는 꼭 알고 합시다.ㅣ창업 준비 과정</span>     
+              </a>
+              <div class="viedo_info">
+                <span class="channelTitle">발랑쿤 채널</span>
+                <span class="channelTitle">2018-12-30</span>     
+              </div>
+            </li>
+            <li class="video_photo_area">
+              <figure class="item_thumb">
+                <a href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                  <img class="youtube_img" src="https://i.ytimg.com/vi/1Iu5XW9FM6s/mqdefault.jpg" alt="">
+                </a>
+              </figure>
+              <a class="title_a_js" href="https://www.youtube.com/watch?v=1Iu5XW9FM6s">
+                <span class="head_title">창업해서 망하지 않으려면 &quot;이거&quot; 하나는 꼭 알고 합시다.ㅣ창업 준비 과정</span>     
+              </a>
+              <div class="viedo_info">
+                <span class="channelTitle">발랑쿤 채널</span>
+                <span class="channelTitle">2018-12-30</span>     
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div></div>
+    </section>
   </div>
-  <script>
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-    zingchart.MODULESDIR = 'https://cdn.zingchart.com/modules/';
-  
-    let chartConfig = {
-      type: 'wordcloud',
-      options: {
-        text: "{{ word_ls }}",
-  
-        aspect: 'flow-center',
-        maxItems: 30,
-        minLength: 2,
-        ignore: [],
-  
-        colorType: 'palette',
-        palette: ['#D32F2F', '#5D4037', '#1976D2', '#E53935', '#6D4C41', '#1E88E5', '#F44336', '#795548', '#2196F3', '#EF5350', '#8D6E63', '#42A5F5'],
-  
-        style: {
-          fontFamily: 'Crete Round',
-  
-          hoverState: {
-            backgroundColor: '#D32F2F',
-            borderRadius: 2,
-            fontColor: 'white'
-          },
-  
-          tooltip: {
-            text: '%text: %hits',
-            visible: true,
-            alpha: 0.9,
-            backgroundColor: '#1976D2',
-            borderRadius: 2,
-            borderColor: 'none',
-            fontColor: 'white',
-            fontFamily: 'Georgia',
-            textAlpha: 1
-          }
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+  zingchart.MODULESDIR = 'https://cdn.zingchart.com/modules/';
+
+  let chartConfig = {
+    type: 'wordcloud',
+    options: {
+      text: "{{ word_ls }}",
+
+      aspect: 'flow-center',
+      maxItems: 30,
+      minLength: 2,
+      ignore: [],
+
+      colorType: 'palette',
+      palette: ['#D32F2F', '#5D4037', '#1976D2', '#E53935', '#6D4C41', '#1E88E5', '#F44336', '#795548', '#2196F3', '#EF5350', '#8D6E63', '#42A5F5'],
+
+      style: {
+        fontFamily: 'Crete Round',
+
+        hoverState: {
+          backgroundColor: '#D32F2F',
+          borderRadius: 2,
+          fontColor: 'white'
+        },
+
+        tooltip: {
+          text: '%text: %hits',
+          visible: true,
+          alpha: 0.9,
+          backgroundColor: '#1976D2',
+          borderRadius: 2,
+          borderColor: 'none',
+          fontColor: 'white',
+          fontFamily: 'Georgia',
+          textAlpha: 1
         }
-      },
-  
-      source: {
-        fontColor: '#64B5F6',
-        fontSize: 8,
-        fontFamily: 'Georgia',
-        fontWeight: 'normal',
-        marginBottom: '20%',
-        borderRadius: '10%',
-        margin: '0 auto'
       }
-    };
-  
-    zingchart.render({
-      id: 'myChart',
-      data: chartConfig,
-      height: 400,
-      width: '100%',
-      borderRadius: '10%'
-    });
-  </script>
-  
+    },
+
+    source: {
+      fontColor: '#64B5F6',
+      fontSize: 8,
+      fontFamily: 'Georgia',
+      fontWeight: 'normal',
+      marginBottom: '20%',
+      borderRadius: '10%',
+      margin: '0 auto'
+    }
+  };
+
+  zingchart.render({
+    id: 'myChart',
+    data: chartConfig,
+    height: 400,
+    width: '100%',
+    borderRadius: '10%'
+  });
+
+  const ctx = document.getElementById('labChart');
+
+  let preiod_data = JSON.parse('{{ period | tojson }}')
+  let kwd_data = JSON.parse('{{ kwd | tojson }}')
+  let ratio_data = JSON.parse('{{ ratio | tojson }}')
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: preiod_data,
+      datasets: [{
+        label: kwd_data,
+        data: ratio_data,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      interaction: {
+        intersect: false,
+        axis: 'x'
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
 {% endblock %}
 
 {% block footer %}
-  {{super()}}
+{{super()}}
 {% endblock %}

@@ -7,9 +7,18 @@
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.container .p_s_input_contianer .top_title_name {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 50px;
 }
 
 .container .p_s_input_contianer {
@@ -37,8 +46,7 @@
 .container .blog_area {
   flex: 0 0 33.333333%;
   max-width: 33.333333%;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-right: 10px;
 }
 
 .container .blog_area .blog_content {
@@ -48,11 +56,13 @@
   border-radius: 15px;
   background-color: white;
   height: 600px;
+  margin-right: 20px;
 }
 
 .container .blog_area .blog_content .blog_position {
   position: relative;
   z-index: 500;
+
 }
 
 .container .blog_area .blog_content .blog_position .title {
@@ -74,6 +84,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
 }
 
 .container .blog_area .blog_content .blog_position .content_area .original-item {
@@ -211,7 +222,7 @@
 
 .container .section_second {
   display: flex;
-  padding: 0 10px;
+  width: 100%;  
 }
 
 .container .section_second .word_container {
@@ -224,6 +235,7 @@
 .container .section_second .word_container .word_title {
   display: flex;
   padding: 25px 22px 0 25px;
+  margin-bottom: 20px;
 }
 
 .container .section_second .word_container .word_title .word_head {
@@ -241,3 +253,136 @@
   width: 100%;
 }
 
+.container .section_second .line_chart_container {
+  margin-top: 30px;
+  border-radius: 15px;
+  background-color: white;
+  width: 65%;
+  margin-left: 30px;
+  padding: 25px 20px 20px 20px;
+}
+
+.container .section_second .line_chart_container .line_chart_area {
+  padding: 0 20px 20px 20px;
+}
+
+.container .section_second .line_chart_container .line_chart_area .line_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .section_second .line_chart_container .line_chart_area .line_title .word_head {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container .section_second .line_chart_container .line_chart_area .line_title .word_sub {
+  font-size: 13px;
+  color: #a7a7a7;
+  font-weight: bold;
+}
+
+.container .section_third {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.container .section_third .video_container {
+  background-color: #fff;
+  border: 1px solid #ecedee;
+  border-radius: 20px;
+  height: 100%;
+  overflow: hidden;
+  padding: 25px;
+}
+
+.container .section_third .video_container .video_title {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.container .section_third .video_container .video_title .head {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container .section_third .video_container .video_title .sub_title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #a7a7a7;
+  display: flex;
+}
+
+.container .section_third .video_container .video_area {
+  min-height: 250px;
+  clear: both;
+  position: relative;
+}
+
+.container .section_third .video_container .video_area .video_solo {
+  display: flex;
+  margin: 0 -1%;
+  width: 93%;
+}
+
+.container .section_third .video_container .video_area .video_solo .video_photo_area {
+  flex: 0 0 20%;
+  margin-bottom: 0;
+  max-height: none;
+  max-width: 100%;
+  width: 20%;
+  padding: 0 1%;
+}
+
+.container .section_third .video_container .video_area .video_solo .video_photo_area .item_thumb {
+  border-radius: 10px;
+  height: 8vw;
+  min-height: 144px;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.container .section_third .video_container .video_area .video_solo .video_photo_area .item_thumb .youtube_img {
+  width: 100%;
+  transition: .3s ease-in-out;
+  opacity: .7;
+}
+
+.youtube_img:hover {
+  transform: scale(1.1);
+  transition: .3s ease-in-out;
+  opacity: 1 !important;
+}
+
+.container .section_third .video_container .video_area .video_solo .viedo_info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.container .section_third .video_container .video_area .video_solo .viedo_info .channelTitle {
+  font-size: 14px;
+  font-weight: bold;
+  color: #999999;
+  transform: scale(1);
+  transition: .3s ease-in-out;
+}
+
+.container .section_third .video_container .video_area .video_solo .video_photo_area .head_title {
+  font-weight: bold;
+  font-size: 15px;
+  max-height: 3em;
+  min-height: 42px;
+}
+
+.title_a_js {
+  max-height: 3em;
+  min-height: 42px;
+}
+
+.title_a_js:hover {
+  text-decoration: underline;
+}

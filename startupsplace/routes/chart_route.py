@@ -58,9 +58,17 @@ col = list(np.array(df2.columns.tolist())) # 컬럼
 
 chart_bp = Blueprint(NAME, __name__, url_prefix='/foodindustry')
 
+
+
+
+
+
+
+@chart_bp.route('/place', methods=['GET', 'POST'])
+def place_html():
+    return render_template(f'{NAME}/place.html')
+
 @chart_bp.route('/chart', methods=['GET', 'POST'])
-
-
 def chart():
     q1_20 = {}
     for i in range(len(col)):
@@ -96,7 +104,7 @@ def chart():
     for i in range(len(col)):
         q3_22[col[i]] = mean[10][i]
 
-    return render_template('chart.html'
+    return render_template(f'{NAME}/chart.html'
         , food_list = food_list
         , food_index = food_index
         , q1_20 = json.dumps(q1_20)
