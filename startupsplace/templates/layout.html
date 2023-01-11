@@ -27,6 +27,7 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}" />
       <link rel="stylesheet" href="{{ url_for('static', filename='css/chart.css') }}" />
       <link rel="stylesheet" href="{{ url_for('static', filename='css/query.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}" />
       <!-- APP JS -->
       <script src="{{ url_for('static', filename='js/app.js') }}"></script>
       <!--Jquery CDN JS-->
@@ -103,7 +104,7 @@
               </a>
             </div>
             <div class="lnb_travelinfo">
-              <a class="travelinfo--a" href="javascript:void(0)">
+              <a class="travelinfo--a" href="{{ url_for('info.info') }}">
                 <span class="lnb_title">매거진</span>
               </a>
             </div>

@@ -1,0 +1,111 @@
+.info_container {
+  padding-top: 48px;
+  padding-bottom: 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.info_container .top_btn {
+  display: flex;
+  flex-direction: row;
+  margin: 24px 0px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgb(228, 230, 231);
+}
+
+.info_container .top_btn .btnn {
+  align-items: center;
+  height: 40px;
+  margin: 0px;
+  cursor: pointer;
+  border: 0px;
+  border-radius: 20px;
+  background-color: rgb(245, 245, 245);
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 13px;
+  margin-right: 10px;
+}
+
+.info_container .info_content {
+
+}
+
+.act {
+  display: none !important;
+}
+
+.info_container .info_content .info_area {
+  gap: 48px 24px;
+  grid-template-columns: repeat(4, calc((100% - 74px) / 4));
+  margin-top: 48px;
+  display: grid;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.info_container .info_content .info_area .info {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+}
+
+.info_container .info_content .info_area .info .img_text {
+  width: 100%;
+  cursor: pointer;
+}
+
+.info_container .info_content .info_area .info .img_text .info_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.info_container .info_content .info_area .info .img_text .img {
+  width: 100%;
+}
+
+.info_container .info_content .info_area .info .img_text .info_text .store_name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info_container .info_content .info_area .info .img_text .info_text .store_info {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1;
+  color: rgb(45, 52, 60);
+}
+
+.active_t {
+  background-color: rgb(88, 88, 242) !important;
+  color: white;
+  font-weight: bold !important; 
+}
+
+.info_container .pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.info_container .pagination-container .pagination-number  {
+  padding: 10px 15px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  margin-right: 4px;
+  color: white;
+  font-weight: bold;
+  color: black;
+}
+
+.active {
+  background-color: rgb(88, 88, 242) !important;
+  color: white !important;
+  font-weight: bold;
+}

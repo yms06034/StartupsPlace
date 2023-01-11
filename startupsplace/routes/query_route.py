@@ -231,6 +231,14 @@ def query_html():
 
     # youtube data api
     videoid, publisne, thumbnails, videotitle, channeltitle = youtube_search(query)
+    
+    videotit = []
+    for i in videotitle:
+        i = i.replace(r'&quot;', '')
+        i = i.replace(r'&apos;', '')
+        i = i.replace(r'&#39;', '')
+        i = i.replace(r'amp;', '')
+        videotit.append(i)
 
     return render_template('query.html' 
                         , title = title
@@ -249,7 +257,7 @@ def query_html():
                         , ratio = ratio
                         , kwd = query
                         , channeltitle = channeltitle
-                        , videotitle = videotitle
+                        , videotitle = videotit
                         , thumbnails = thumbnails
                         , publisne = publisne
                         , videoid = videoid)

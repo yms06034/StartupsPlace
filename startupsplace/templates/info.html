@@ -1,0 +1,113 @@
+{% extends "/layout.html" %}
+
+{% block title -%}
+Info
+{%- endblock %}
+
+{% block head -%}
+{{ super() }}
+{% endblock %}
+
+{% block body %}
+  {{ super() }}
+<div class="info_container">
+  <div class="top_btn">
+    <button class="btnn active_t">전체</button>
+    <button class="btnn">카페·디저트</button>
+    <button class="btnn">음식점·주점</button>
+    <button class="btnn">치킨·피자</button>
+    <button class="btnn">분식·패스트푸드</button>
+  </div>
+
+  <div class="info_content">
+    <ul id="paginated-list" class="info_area">
+      {% for i in range(0, 120) %}
+      <li class="info">
+        <div class="img_text">
+          <img class="img" src="{{ img[i] }}" alt="testimg">
+          <div class="info_text">
+            <p class="store_name">{{ name[i] }}</p>
+            <p class="store_info"s>{{ cote[i] }} · {{ count[i] }}</p>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <nav class="pagination-container">
+      <div id="pagination-numbers" onclick="window.scrollTo(0,0);">
+      </div>
+  </nav>
+</div>
+
+<script>
+let paginationNumbers = document.getElementById("pagination-numbers");
+let paginatedList = document.getElementById("paginated-list");
+let listItems = paginatedList.querySelectorAll("li");
+
+const paginationLimit = 16;
+const pageCount = Math.ceil(listItems.length / paginationLimit);
+let currentPage = 1;
+
+const appendPageNumber = (index) => {
+  const pageNumber = document.createElement("button");
+  pageNumber.className = "pagination-number";
+  pageNumber.innerHTML = index;
+  pageNumber.setAttribute("page-index", index);
+  pageNumber.setAttribute("aria-label", "Page " + index);
+
+  paginationNumbers.appendChild(pageNumber);
+};
+
+const getPaginationNumbers = () => {
+  for (let i = 1; i <= pageCount; i++) {
+    appendPageNumber(i);
+  }
+};
+
+const handleActivePageNumber = () => {
+  document.querySelectorAll(".pagination-number").forEach((button) => {
+    button.classList.remove("active");
+    const pageIndex = Number(button.getAttribute("page-index"));
+    if (pageIndex == currentPage) {
+      button.classList.add("active");
+    }
+  });
+};
+
+const setCurrentPage = (pageNum) => {
+  currentPage = pageNum;
+  handleActivePageNumber();
+
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+
+  listItems.forEach((item, index) => {
+    item.classList.add("hidden");
+    if (index >= prevRange && index < currRange) {
+      item.classList.remove("hidden");
+    }
+  });
+};
+
+window.addEventListener("load", () => {
+  getPaginationNumbers();
+  setCurrentPage(1);
+
+  document.querySelectorAll(".pagination-number").forEach((button) => {
+    const pageIndex = Number(button.getAttribute("page-index"));
+
+    if (pageIndex) {
+      button.addEventListener("click", () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
+});
+</script>
+{% endblock %}
+
+{% block footer %}
+{{super()}}
+{% endblock %}

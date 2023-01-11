@@ -12,6 +12,26 @@ Main
 <!-- header -->
   {{ super() }}
 <!-- main banner -->
+
+<div class="place_search">
+  <div class="place_search_title">
+    <span class="head_addtitle">창업 관련 정보를 한눈에 찾기 어렵다면?</span>
+    <div class="p_s_row">
+      <h2 class="p_s_title">빅데이터로 찾는 <span class="p_s_title_sub"></span></h2>
+    </div>
+  </div>
+  <div class="p_s_input_contianer">
+    <form class="p_s_input_from" method="POST" action="http://127.0.0.1:5000/query">
+      <input 
+        class="search_input"
+        type="text" 
+        name="input" 
+        id="input"
+        placeholder="원하시는 창업관련 키워드를 검색해주세요" />
+      <!-- <input type="submit", value="pred" /> -->
+    </form>
+  </div>
+</div>
 <section class="mainheader__container">
   <div class="mainheader_grid">
     <div class="mainheader_grid_row gird_title">
@@ -63,28 +83,11 @@ Main
     <div class="swiper-pagination"></div>
   </div>
 </section>
-<div class="place_search">
-  <div class="place_search_title">
-    <div class="p_s_row">
-      <h2 class="p_s_title">브랜드 창업 관련 정보가 궁금하신가요?</h2>
-    </div>
-  </div>
-  <div class="p_s_input_contianer">
-    <form class="p_s_input_from" method="POST" action="http://127.0.0.1:5000/query">
-      <input 
-        class="search_input"
-        type="text" 
-        name="input" 
-        id="input"
-        placeholder="원하시는 창업관련 키워드를 검색해주세요   ex) 창업준비" />
-      <!-- <input type="submit", value="pred" /> -->
-    </form>
-  </div>
-</div>
+
 <div class="hashtag">
   <div class="hashtag_title">
     <div class="hashtag_row">
-      <h2 class="hashtag_title_h2">HOT HASHTAG</h2>
+      <h2 class="hashtag_title_h2">업종 카테고리</h2>
     </div>
   </div>
   <div class="content">
@@ -141,14 +144,6 @@ Main
         <a href="javascript:void(0)">
           <div>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo6MogYqwmuQA_QrKf7KrNFUZNA0NTXdnyb87PpuQIcRiGKY91vCiaBXuxGQqut5deIuI&usqp=CAU" alt="">
-            </div>
-          <div>
-            <span class="font_size"># 카페</span>
-          </div>
-        </a>
-        <a href="javascript:void(0)">
-          <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo6MogYqwmuQA_QrKf7KrNFUZNA0NTXdnyb87PpuQIcRiGKY91vCiaBXuxGQqut5deIuI&usqp=CAU" alt="">
           </div>
           <div>
             <span class="font_size"># 맛집탐방</span>
@@ -170,6 +165,47 @@ Main
 </div>
 
 <script>
+  let typeText = document.querySelector(".p_s_title_sub")
+  let textToBeTypedArr = ["치킨 창업", "카페 창업", "분식집 창업", "편의점 창업"]
+  let index = 0, isAdding = true, textToBeTypedIndex = 0
+
+  function playAnim() {
+    setTimeout(function () {
+      // set the text of typeText to a substring of the text to be typed using index.
+      typeText.innerText = textToBeTypedArr[textToBeTypedIndex].slice(0, index)
+      if (isAdding) {
+        // adding text
+        if (index > textToBeTypedArr[textToBeTypedIndex].length) {
+          // no more text to add
+          isAdding = false
+          //break: wait 2s before playing again
+          setTimeout(function () {
+            playAnim()
+          }, 2000)
+          return
+        } else {
+          // increment index by 1
+          index++
+        }
+      } else {
+        // removing text
+        if (index === 0) {
+          // no more text to remove
+          isAdding = true
+          //switch to next text in text array
+          textToBeTypedIndex = (textToBeTypedIndex + 1) % textToBeTypedArr.length
+        } else {
+          // decrement index by 1
+          index--
+        }
+      }
+      // call itself
+      playAnim()
+    }, isAdding ? 120 : 60)
+  }
+  // start animation
+  playAnim()
+
   var swiper = new Swiper(".swiper-container", {
     spaceBetween: 30,
     centeredSlides: true,
