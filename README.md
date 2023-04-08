@@ -27,13 +27,7 @@ $ flask run
 
 
 ## Files
-`models/bertdataset.py` Kobert data
 
-`models/classifier.py` Kobert classifier
-
-`models/predict.py` Kobert predict
-
-`routes/sing_route.py` Web Page of Predict Value & Crawling
 
 ## RETROSPECTIVE
 ##### 이전  회사에서 DA 진행을 할 때는 sklearn으로 ML만 진행 하였는데 이번 프로젝트를 통해 Deep learning을 조금이 나마 알게 되었다.
