@@ -41,7 +41,3 @@
 ##### Bert 논문을 보면서 모델 구조부터 천천히 익히면서 공부하였는데 확실한건 CNN보다 NLP 에 더 잘 맞는다는 것 이였다.
 ##### 또한 왜 NVIDIA가 큰 성공을 할 수 있는지 알 수 있던 계기가 되었다... (내 GPU...)
 
-
-## Thesis Link
-https://koreascience.kr/article/JAKO202031458603832.pdf
-
