@@ -19,11 +19,11 @@
 
 
 ## Prerequisite
-> pip install -r requirements.txt
-> 
-> export FLASK_APP=startupsplace
->
-> flask run
+```
+$ pip install -r requirements.txt
+$ export FLASK_APP=startupsplace
+$ flask run
+```
 
 
 ## Files
