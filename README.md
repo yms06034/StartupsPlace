@@ -7,10 +7,10 @@
 본 프로젝트는 신규 창업자를 위해 원하는 창업 관련 키워드 하나로 찾는 정보 사이트
 
 ## Project INFO
-
+%
 
 ### - PIPELINE
-
+%
 
 ## Environment
 
