@@ -15,6 +15,7 @@
 ## Environment
 
 > Python Version 3.8
+>
 > Docker Mysql 5
 
 
@@ -30,4 +31,5 @@ $ flask run
 
 
 ## RETROSPECTIVE
+
 
