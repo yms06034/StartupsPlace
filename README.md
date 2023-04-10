@@ -8,7 +8,8 @@
 
 ## Service INFO
 - 메인 페이지
-![1__메인페이지_AdobeExpress](https://user-images.githubusercontent.com/98085184/230842382-4b49cacd-96fa-4501-91f5-b1d813593762.gif)
+
+![1__메인페이지_AdobeExpress (1)](https://user-images.githubusercontent.com/98085184/230842608-ffe28991-12a2-4430-9c4d-1970dde97389.gif)
 
 
 - 회원가입 및 로그인 페이지
@@ -18,6 +19,8 @@
 
 
 - 키워드 정보 페이지
+
+![5__키워드_분석_페이지_기능__AdobeExpress](https://user-images.githubusercontent.com/98085184/230842847-4e9151e0-5337-472f-97b0-dad0e6155f82.gif)
 
 - 매장 정보 페이지
 
