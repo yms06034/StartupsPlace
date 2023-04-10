@@ -61,7 +61,7 @@ $ flask run
 그래서 처음에는 User가 원하는 프렌차이즈를 검색하면 네이버에서 크롤링을 진행해 위치 정보를 보여주려고 했으나 경도, 위도 값을 가져오는 것은 Json으로 가져올 수 있었으나, 속도가 너무 느릴 뿐더러 크롤링을 계속 시도하는 거 자체를 서비스화 하기에는 좀 불안했다. (크롤링 실패 시 큰일 이니깐... 안정화 작업도 해야하니...)
 - 그래서 생각한 것이 카카오 MAP API를 활용해 진행하였다.
 	- 속도도 더 빨라지고 안정성도 많이 올라갔다.
-- 자세한 코드는 [여기에](https://github.com/yms06034/StartupsPlace/blob/master/startupsplace/routes/chart_route.py)에서 확인이 가능합니다.
+- 자세한 코드는 **[여기](https://github.com/yms06034/StartupsPlace/blob/master/startupsplace/routes/chart_route.py)**에서 확인이 가능합니다.
 
 
 ## RETROSPECTIVE
