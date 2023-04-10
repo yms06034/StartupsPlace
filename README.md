@@ -9,7 +9,12 @@
 ## Service INFO
 
 
+https://user-images.githubusercontent.com/98085184/230841789-009a9a08-4746-4610-930a-9118c7235cb4.mp4
+
+
+
 ## PIPELINE
+![Startupsplace_pipeling](https://user-images.githubusercontent.com/98085184/230840969-bb3e6f8b-37d2-4d0e-9358-cf539796e16a.png)
 
 
 ## Environment
