@@ -7,9 +7,23 @@
 본 프로젝트는 신규 창업자를 위해 원하는 창업 관련 키워드 하나로 찾는 정보 사이트
 
 ## Service INFO
+- 메인 페이지
+![1__메인페이지_AdobeExpress](https://user-images.githubusercontent.com/98085184/230842382-4b49cacd-96fa-4501-91f5-b1d813593762.gif)
 
 
-https://user-images.githubusercontent.com/98085184/230841789-009a9a08-4746-4610-930a-9118c7235cb4.mp4
+- 회원가입 및 로그인 페이지
+
+
+- 지역별 상권 정보 페이지
+
+
+- 키워드 정보 페이지
+
+- 매장 정보 페이지
+
+
+
+
 
 
 
