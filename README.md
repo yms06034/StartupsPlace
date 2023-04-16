@@ -2,7 +2,7 @@
 
 
 # Startups Place
-키워드 하나로 찾는 신규 창업자를 위한 창업 관련 DATA &amp; DashBorad 개발
+키워드 하나로 찾는 신규 창업자를 위한 창업 관련 DATA&amp; DashBorad 개발
 
 ## Description
 프로젝트 기간 2023.01.13 ~ 2023.01.15 \
